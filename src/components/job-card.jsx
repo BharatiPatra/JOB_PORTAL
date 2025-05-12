@@ -18,8 +18,8 @@ import { BarLoader } from "react-spinners";
 const JobCard = ({
   job,
   savedInit = false,
-  onJobAction = () => {},
-  isMyJob = false,
+  onJobAction = () => {}, //saved jobs to show heart icon
+  isMyJob = false, //for recuirter to show jobs with trash icon
 }) => {
   const [saved, setSaved] = useState(savedInit);
 
@@ -27,8 +27,7 @@ const JobCard = ({
 
   const { loading: loadingDeleteJob, fn: fnDeleteJob } = useFetch(deleteJob, {
     job_id: job.id,
-  }); 
-
+  });
 
   const {
     loading: loadingSavedJob,
