@@ -15,7 +15,7 @@ const Header = () => {
 
   const [search, setSearch] = useSearchParams();
   const { user } = useUser();
-
+  console.log(user)
   useEffect(() => {
     if (search.get("sign-in")) {
       setShowSignIn(true);
@@ -75,7 +75,7 @@ const Header = () => {
           </SignedIn>
         </div>
       </nav>
-      {/* {--------log in page--   ---} */}
+      {/* {/* {--------log in page--   ---} * MODAL POP UP/} */}
       {showSignIn && (
         <div
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"

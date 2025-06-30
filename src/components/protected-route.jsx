@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children }) => {
     !user?.unsafeMetadata?.role &&
     pathname !== "/onboarding"
   )
-    return <Navigate to="/onboarding" />;
+    return <Navigate to="/onboarding" replace />;
 
   return children;
 };

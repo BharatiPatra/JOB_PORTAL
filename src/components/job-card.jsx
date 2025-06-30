@@ -18,8 +18,8 @@ import { BarLoader } from "react-spinners";
 const JobCard = ({
   job,
   savedInit = false,
-  onJobAction = () => {}, //saved jobs to show heart icon
-  isMyJob = false, //for recuirter to show jobs with trash icon
+  onJobAction = () => {},
+  isMyJob = false,
 }) => {
   const [saved, setSaved] = useState(savedInit);
 
@@ -38,28 +38,8 @@ const JobCard = ({
   });
 
   const handleSaveJob = async () => {
-    try {
-      if (!saved) {
-        // Call the API to save the job
-        await fnSavedJob({
-          user_id: user.id,
-          job_id: job.id,
-        });
-        // Set the saved state to true only after successful save
-        setSaved(true);
-      } else {
-        // Call the API to delete the saved job
-        await fnRemvoeSavedJob({
-          job_id: job.id,
-        });
-        // Set the saved state to false only after successful deletion
-        setSaved(false);
-      }
-      onJobAction(); // Trigger any parent updates if necessary
-    } catch (error) {
-      console.error("Error saving/deleting job:", error);
-      // Handle the error appropriately, such as showing a message to the user
-    }
+    await fnSavedJob({ user_id: user.id, job_id: job.id });
+    onJobAction();
   };
 
   const handleDeleteJob = async () => {
@@ -120,7 +100,9 @@ const JobCard = ({
           </Button>
         )}
       </CardFooter>
+      
     </Card>
+
   );
 };
 
